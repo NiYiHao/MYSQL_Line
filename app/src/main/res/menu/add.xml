@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/add_data"
+        android:title="新增聯人"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/del_data"
+        android:title="刪除聯絡人"
+        app:showAsAction="never" />
+</menu>
