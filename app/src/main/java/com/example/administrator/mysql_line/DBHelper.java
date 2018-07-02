@@ -10,6 +10,7 @@ public class DBHelper extends SQLiteOpenHelper{
     public static final String KEY_PHONE = "phone";
     public static final String KEY_EMAIL = "email";
     public static final String KEY_BIRTH = "birth";
+//    public static final String KEY_IMG = "imageView";
     private static final String DATABASE_NAME = "Contact";
     private static final String TABLE_NAME = "member";
     private static final int DATABASE_VERSION = 1;
@@ -21,6 +22,7 @@ public class DBHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         final String DATABASE_CREATE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (" +
                 KEY_ID + " integer PRIMARY KEY autoincrement," +
+ //               KEY_IMG + "," +
                 KEY_NAME + "," +
                 KEY_PHONE + "," +
                 KEY_EMAIL + "," +

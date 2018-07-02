@@ -14,6 +14,7 @@ public class DBadapter {
     public static final String KEY_PHONE = "phone";
     public static final String KEY_EMAIL = "email";
     public static final String KEY_BIRTH = "birth";
+//    public static final String KEY_IMG = "imageView";
     private DBHelper mDbHelper;
     private SQLiteDatabase mdb;
     private final Context mCtx;
