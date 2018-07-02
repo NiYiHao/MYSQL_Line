@@ -39,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
                 intent.setClass( MainActivity.this, EditActivity.class );
                 startActivity( intent );
                 break;
-
-
         }
         return super.onOptionsItemSelected( item );
     }

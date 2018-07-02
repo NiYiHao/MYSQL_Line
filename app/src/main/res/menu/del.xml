@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/add_data"
-        android:title="新增聯人"
+        android:id="@+id/del_data"
+        android:title="刪除聯絡人"
         app:showAsAction="never" />
 </menu>

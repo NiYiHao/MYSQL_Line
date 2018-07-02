@@ -17,7 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class EditActivity extends AppCompatActivity implements View.OnClickListener{
+public class EditActivity extends AppCompatActivity implements View.OnClickListener {
     EditText edt_name, edt_phone, edt_mail, edt_birth;
     Button btn_ok, btn_back;
     TextView txtTitle;
@@ -62,32 +62,33 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
         btn_ok = findViewById( R.id.btn_ok );
         btn_back = findViewById( R.id.btn_back );
     }
+
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.editName:
-                if(bData.getString("type").equals("add"))  edt_name.setText("");
+                if (bData.getString( "type" ).equals( "add" )) edt_name.setText( "" );
                 break;
             case R.id.editPhome:
-                if(bData.getString("type").equals("add"))  edt_phone.setText("");
+                if (bData.getString( "type" ).equals( "add" )) edt_phone.setText( "" );
                 break;
             case R.id.editMail:
-                if(bData.getString("type").equals("add"))  edt_mail.setText("");
+                if (bData.getString( "type" ).equals( "add" )) edt_mail.setText( "" );
                 break;
             case R.id.editBrith:
-                if(bData.getString("type").equals("add"))  edt_birth.setText("");
+                if (bData.getString( "type" ).equals( "add" )) edt_birth.setText( "" );
                 final Calendar c = Calendar.getInstance();
-                mYear = c.get(Calendar.YEAR);
-                mMonth = c.get(Calendar.MONTH);
-                mDay = c.get(Calendar.DAY_OF_MONTH);
+                mYear = c.get( Calendar.YEAR );
+                mMonth = c.get( Calendar.MONTH );
+                mDay = c.get( Calendar.DAY_OF_MONTH );
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                DatePickerDialog datePickerDialog = new DatePickerDialog( this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
-                                edt_birth.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                                edt_birth.setText( year + "-" + (monthOfYear + 1) + "-" + dayOfMonth );
                             }
-                        }, mYear, mMonth, mDay);
+                        }, mYear, mMonth, mDay );
                 datePickerDialog.show();
 
                 break;
@@ -96,62 +97,66 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
                 new_phone = edt_phone.getText().toString();
                 new_mail = edt_mail.getText().toString();
                 new_birth = edt_birth.getText().toString();
-                Log.i("new_name=",new_name);
-                Log.i("new_phone=",new_phone);
-                Log.i("new_mail=",new_mail);
-                dbAdapter = new DBadapter(EditActivity.this);
-                if(bData.getString("type").equals("add")){
-                    try{
-                        dbAdapter.createContacts(new_name, new_phone, new_mail, new_birth);
-                    }catch (Exception e){
+                Log.i( "new_name=", new_name );
+                Log.i( "new_phone=", new_phone );
+                Log.i( "new_mail=", new_mail );
+                dbAdapter = new DBadapter( EditActivity.this );
+                if (bData.getString( "type" ).equals( "add" )) {
+                    try {
+                        dbAdapter.createContacts( new_name, new_phone, new_mail, new_birth );
+                    } catch (Exception e) {
                         e.printStackTrace();
-                    }finally {
+                    } finally {
                         //回到列表
-                        Intent i = new Intent(this, MainActivity.class);
-                        startActivity(i);
+                        Intent i = new Intent( this, MainActivity.class );
+                        startActivity( i );
                     }
 
-                }else{
-                    try{
-                        dbAdapter.updateContacts(index, new_name, new_phone, new_mail, new_birth);
-                    }catch(Exception e){
+                } else {
+                    try {
+                        dbAdapter.updateContacts( index, new_name, new_phone, new_mail, new_birth );
+                    } catch (Exception e) {
                         e.printStackTrace();
-                    }finally {
-                        Intent i = new Intent(this, ShowActivity.class);
-                        startActivity(i);
+                    } finally {
+                        Intent i = new Intent( this, ShowActivity.class );
+                        i.putExtra( "item_name", edt_name.getText().toString() );
+                        startActivity( i );
                     }
 
                 }
                 break;
             case R.id.btn_back:
-                if(bData.getString("type").equals("add")){
-                    Intent i = new Intent(this, MainActivity.class);
-                    startActivity(i);
-                }else{
-                    Intent i = new Intent(this, ShowActivity.class);
-                    startActivity(i);
+                if (bData.getString( "type" ).equals( "add" )) {
+                    Intent i = new Intent( this, MainActivity.class );
+                    startActivity( i );
+                } else {
+                    Intent i = new Intent( this, ShowActivity.class );
+                    i.putExtra( "item_name", edt_name.getText().toString() );
+                    startActivity( i );
                 }
                 break;
         }
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.add,menu);
-        return true;    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.del_data:
-                Boolean isDeleted = dbAdapter.deleteContacts(index);
-                if(isDeleted)
-                    Toast.makeText(EditActivity.this,"已刪除!", Toast.LENGTH_LONG).show();
-                break;
-
-
-        }
-        return super.onOptionsItemSelected(item);    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater menuInflater = getMenuInflater();
+//        menuInflater.inflate(R.menu.add,menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()){
+//
+//            case R.id.del_data:
+//                Boolean isDeleted = dbAdapter.deleteContacts(index);
+//                if(isDeleted)
+//                    Toast.makeText(EditActivity.this,"已刪除!", Toast.LENGTH_LONG).show();
+//                break;
+//
+//
+//        }
+//        return super.onOptionsItemSelected(item);    }
 }
